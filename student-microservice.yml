@@ -24,14 +24,54 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 
+resilience4j:
+  retry:
+    instances:
+      studentRetry:
+        max-attempts: 3
+        wait-duration: 500ms
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+  
+  ratelimiter:
+    instances:
+      studentRateLimiter:
+        limit-for-period: 10
+        limit-refresh-period: 1s
+        timeout-duration: 500ms
+  
+  circuitbreaker:
+    instances:
+      studentCircuitBreaker:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000ms
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+  
+  timelimiter:
+    instances:
+      studentTimeLimiter:
+        timeout-duration: 3s
+
+#  Configuration Actuator et Prometheus
 management:
   endpoints:
     web:
       exposure:
-        include: info,health
+        include: "*"
   endpoint:
+    health:
+      show-details: always
     info:
       enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
   tracing:
     sampling:
       probability: 1.0
@@ -40,3 +80,4 @@ logging:
   level:
     root: INFO
     org.springframework.web: DEBUG
+    io.github.resilience4j: DEBUG
