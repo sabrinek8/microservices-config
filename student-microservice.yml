@@ -36,9 +36,9 @@ resilience4j:
   ratelimiter:
     instances:
       studentRateLimiter:
-        limit-for-period: 10
-        limit-refresh-period: 1s
-        timeout-duration: 500ms
+        limit-for-period: 5        # Réduit à 5 pour tester
+        limit-refresh-period: 1s   #  1 seconde
+        timeout-duration: 0        # Pas d'attente, rejette immédiatement
   
   circuitbreaker:
     instances:
