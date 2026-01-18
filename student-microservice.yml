@@ -26,7 +26,7 @@ eureka:
   instance:
     prefer-ip-address: true
     non-secure-port: ${server.port}   
-    instance-id: ${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}:${random.value}
 
 resilience4j:
   retry:
