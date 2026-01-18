@@ -48,6 +48,8 @@ resilience4j:
         wait-duration-in-open-state: 10000ms
         permitted-number-of-calls-in-half-open-state: 3
         automatic-transition-from-open-to-half-open-enabled: true
+        record-exceptions:
+          - java.lang.RuntimeException
   
   timelimiter:
     instances:
