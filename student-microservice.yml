@@ -14,8 +14,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
-server:
-  port: 0
+#server:
+#  port: 0
 
 eureka:
   client:
@@ -63,8 +63,6 @@ resilience4j:
 #  Configuration Actuator et Prometheus
 
 management:
-  server:
-    port: 0
   endpoints:
     web:
       exposure:
