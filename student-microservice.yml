@@ -64,7 +64,7 @@ resilience4j:
 
 management:
   server:
-    port: 8081
+    port: 0
   endpoints:
     web:
       exposure:
