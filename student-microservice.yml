@@ -61,7 +61,10 @@ resilience4j:
         timeout-duration: 3s
 
 #  Configuration Actuator et Prometheus
+
 management:
+  server:
+    port: 8081
   endpoints:
     web:
       exposure:
